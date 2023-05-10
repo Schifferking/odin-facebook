@@ -1,0 +1,9 @@
+<h1><%= @post.title %></h1>
+<div class="content">
+  <p><%= @post.body %></p>
+</div>
+<%= form_with model: @like do |f| %>
+  <%= f.hidden_field(:user_id, value: current_user.id) %>
+  <%= f.hidden_field(:post_id, value: @post.id) %>
+  <%= f.submit "I like this post" %>
+<% end %>
