@@ -6,9 +6,9 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     if @like.save
-      redirect_to root_path
-    else
       redirect_to post_path(:post_id)
+    else
+      redirect_to post_path(:post_id), status: :unprocessable_entity
     end
   end
 
