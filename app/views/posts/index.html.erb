@@ -1,0 +1,9 @@
+<h1>Timeline</h1>
+
+<% @posts.reverse_each do |post| %>
+  <div>
+    <p><strong><%= post.title %></strong></p>
+    <p><%= post.body %></p>
+    <p><%= post.likes.count %> likes </p>
+  </div>
+<% end %>

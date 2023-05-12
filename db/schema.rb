@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_11_000351) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_230809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_000351) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "requester_id"
+    t.integer "requested_id"
+    t.string "relationship_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requester_id", "requested_id"], name: "index_relationships_on_requester_id_and_requested_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,4 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_000351) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "relationships", "users", column: "requested_id"
+  add_foreign_key "relationships", "users", column: "requester_id"
 end

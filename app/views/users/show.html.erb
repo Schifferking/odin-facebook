@@ -1,5 +1,16 @@
 <h1><%= @user.name %>'s profile</h1>
+
+<%= render "friend_request_button" %>
+
 <div class="user-info">
-<p>Gender: <%= @user.gender%></p>
-<p>Color: <%= @user.color%></p>
+  <p>Gender: <%= @user.gender%></p>
+  <p>Color: <%= @user.color%></p>
 </div>
+
+<% unless @user.posts.nil? %>
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li><%= link_to post.title, post_path(post.id) %></li>
+    <% end%>
+  </ul>
+<% end %>

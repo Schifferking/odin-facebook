@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(user_id: current_user.id)
   end
 
   def show

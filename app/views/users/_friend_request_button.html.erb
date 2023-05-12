@@ -1,0 +1,10 @@
+<% if @user != current_user &&
+      !(Relationship.friend_request_sent?(current_user.id, @user.id) ||
+        Relationship.friend_request_received?(current_user.id, @user.id)) %>
+  <%= form_with model: @relationship do |f| %>
+    <%= f.hidden_field(:requester_id, value: current_user.id) %>
+    <%= f.hidden_field(:requested_id, value: @user.id) %>
+    <%= f.hidden_field(:relationship_type, value: "pending") %>
+    <%= f.submit "Send friend request" %>
+  <% end %>
+<% end %>
