@@ -1,0 +1,21 @@
+<h1>Friend requests</h1>
+<ul>
+  <% @relationships.each do |r| %>
+    <% if r.relationship_type == "pending" %>
+      <li>
+        <%= r.requester.name %>
+        <% relationship = Relationship.find(r.id) %>
+        <%= form_with model: relationship do |f| %>
+          <%= f.hidden_field(:requester_id, value: r.requester_id) %>
+          <%= f.hidden_field(:requested_id, value: r.requested_id) %>
+          <%= f.hidden_field(:relationship_type, value: "friends") %>
+          <%= f.submit "Confirm" %>
+        <% end %>
+        <%= form_with model: relationship, method: :delete do |f| %>
+          <%= f.submit "Delete" %>
+        <% end %>
+      </li>
+      <br>
+    <% end %>
+  <% end %>
+</ul>

@@ -12,6 +12,24 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def index
+    @relationships = Relationship.where(requested_id: current_user.id)
+  end
+
+  def update
+    @relationship = Relationship.find(params[:id])
+    if @relationship.update(relationship_params)
+      redirect_to root_path
+    else
+      redirect_to root_path, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @relationship = Relationship.find(params[:id])
+    @relationship.destroy
+  end
+
   private
 
   def relationship_params
