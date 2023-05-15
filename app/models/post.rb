@@ -4,4 +4,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes
   has_many :comments
+
+  def self.friend_posts(friends)
+    Post.where(user_id: friends)
+  end
 end

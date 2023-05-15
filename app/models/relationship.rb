@@ -23,4 +23,27 @@ class Relationship < ApplicationRecord
   def self.friend_request_received?(user_id1, user_id2)
     entry_found?(user_id2, user_id1)
   end
+
+  def self.friends(user_id)
+    requester_friends(user_id).pluck(:requester_id) +
+      requested_friends(user_id).pluck(:requested_id)
+  end
+
+  def self.friend_entries(user_id)
+    Relationship.where(requester_id: user_id)
+                .or(Relationship.where(requested_id: user_id))
+                .and(Relationship.where(relationship_type: 'friends'))
+  end
+
+  def self.requester_friends(user_id)
+    Relationship.friend_entries(user_id)
+                .select(:requester_id)
+                .where(requested_id: user_id)
+  end
+
+  def self.requested_friends(user_id)
+    Relationship.friend_entries(user_id)
+                .select(:requested_id)
+                .where(requester_id: user_id)
+  end
 end

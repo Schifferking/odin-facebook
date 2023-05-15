@@ -2,8 +2,14 @@
 
 <% @posts.reverse_each do |post| %>
   <div>
-    <p><strong><%= post.title %></strong></p>
+    <p>
+      <strong><%= link_to post.user.name, user_path(post.user.id) %></strong>
+    </p>
+    <p><%= post.created_at.strftime("%m/%d/%Y") %></p>
+    <p><strong><%= link_to post.title, post_path(post.id) %></strong></p>
     <p><%= post.body %></p>
-    <p><%= post.likes.count %> likes </p>
+    <p><%= post.likes.count %> likes 
+       <%= post.comments.count %> comments </p>
   </div>
+  <br>
 <% end %>

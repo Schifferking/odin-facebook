@@ -13,7 +13,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: current_user.id)
+    @friends = Relationship.friends(current_user.id).append(current_user.id)
+    @posts = Post.friend_posts(@friends)
   end
 
   def show
