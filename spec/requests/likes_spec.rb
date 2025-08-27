@@ -5,8 +5,8 @@ RSpec.describe Like, type: :request do
   include_context :login_user
 
   let(:valid_attributes) do
-    create(:post)
-    { user_id: 1, post_id: 1 }
+    user_post = create(:post)
+    { user_id: user.id, post_id: user_post.id }
   end
 
   let(:invalid_attributes) do

@@ -5,12 +5,11 @@ RSpec.describe Comment, type: :request do
   include_context :login_user
 
   let(:valid_attributes) do
-    create(:post)
-    { content: 'comment', user_id: 1, post_id: 1 }
+    user_post = create(:post)
+    { content: 'comment', user_id: user.id, post_id: user_post.id }
   end
 
   let(:invalid_attributes) do
-    create(:post)
     { content: nil, user_id: nil, post_id: nil }
   end
 

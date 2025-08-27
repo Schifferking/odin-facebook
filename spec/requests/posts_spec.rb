@@ -5,7 +5,7 @@ RSpec.describe Post, type: :request do
   include_context :login_user
 
   let(:valid_attributes) do
-    { title: 'placeholder title', body: 'placeholder body', user_id: 1 }
+    { title: 'placeholder title', body: 'placeholder body', user_id: user.id }
   end
 
   let(:invalid_attributes) do
