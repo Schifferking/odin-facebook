@@ -3,13 +3,13 @@ class Relationship < ApplicationRecord
   validates :requested_id, presence: true
   validates :relationship_type, presence: true
   validate :validate_inverse_friend_request_uniqueness
-  belongs_to :requester, class_name: "User"
-  belongs_to :requested, class_name: "User"
+  belongs_to :requester, class_name: 'User'
+  belongs_to :requested, class_name: 'User'
 
   def validate_inverse_friend_request_uniqueness
-    if Relationship.find_by(requester_id: requested.id, requested_id: requester.id)
-      errors.add(:base, "Inverse combination already exists")
-    end
+    return unless Relationship.find_by(requester_id: requested.id, requested_id: requester.id)
+
+    errors.add(:base, 'Inverse combination already exists')
   end
 
   def self.entry_found?(user_id1, user_id2)

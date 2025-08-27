@@ -32,18 +32,18 @@ RSpec.describe Relationship, type: :request do
   describe 'PATCH /relationships/:id' do
     context 'with valid attributes' do
       let(:new_attributes) do
-        { requester_id: user.id, requested_id: requested_user.id, relationship_type: "friends" }
+        { requester_id: user.id, requested_id: requested_user.id, relationship_type: 'friends' }
       end
 
       it 'changes relationship_type' do
         relationship = create(:relationship, valid_attributes)
-        expect do 
+        expect do
           patch relationship_url(relationship), params: { relationship: new_attributes }
           relationship.reload
         end.to \
           change(relationship, :relationship_type)
-          .from("pending")
-          .to("friends")
+          .from('pending')
+          .to('friends')
       end
 
       it 'redirects to root_path' do

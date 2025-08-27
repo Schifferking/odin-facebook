@@ -5,11 +5,11 @@ FactoryBot.define do
     requested factory: :user
 
     trait :pending do
-      relationship_type { "pending" }
+      relationship_type { 'pending' }
     end
 
     trait :friends do
-      relationship_type { "friends" }
+      relationship_type { 'friends' }
     end
   end
 

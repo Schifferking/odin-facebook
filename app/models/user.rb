@@ -9,6 +9,6 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :comments
-  has_many :requests_sent, foreign_key: "requester_id", class_name: "Relationship"
-  has_many :requests_received, foreign_key: "requested_id", class_name: "Relationship"
+  has_many :requests_sent, foreign_key: 'requester_id', class_name: 'Relationship'
+  has_many :requests_received, foreign_key: 'requested_id', class_name: 'Relationship'
 end

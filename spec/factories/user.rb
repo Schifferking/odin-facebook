@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:id) { |n| n }
     sequence(:name) { |n| "Person #{n}" }
     sequence(:email) { |n| "person#{n}@mail.com" }
-    password { "donotusethispassword" }
+    password { 'donotusethispassword' }
   end
 end
