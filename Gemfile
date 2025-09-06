@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.8'
+ruby '3.4.4'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
@@ -53,6 +53,19 @@ gem 'faker'
 
 # User Authentication
 gem 'devise', '~> 4.9'
+
+# NOTE: the next 4 gems are included to prevent rspec errors with Ruby 3.4.4
+# Encoding and decoding functionality
+gem 'base64'
+
+# arbitrary-precision decimal floating-point number class
+gem 'bigdecimal'
+
+# Mixin to extend objects to be handled like a Mutex
+gem 'mutex_m'
+
+# Distributed object system
+gem 'drb'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
