@@ -22,9 +22,9 @@ RSpec.describe Relationship, type: :request do
     end
 
     context 'with invalid attributes' do
-      it 'returns unprocessable_entity http status' do
+      it 'returns unprocessable_content http status' do
         post relationships_url, params: { relationship: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -55,11 +55,11 @@ RSpec.describe Relationship, type: :request do
     end
 
     context 'with invalid attributes' do
-      it 'returns unprocessable_entity http status' do
+      it 'returns unprocessable_content http status' do
         relationship = create(:relationship, valid_attributes)
         patch relationship_url(relationship), params: { relationship: invalid_attributes }
         relationship.reload
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

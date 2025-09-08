@@ -22,9 +22,9 @@ RSpec.describe Comment, type: :request do
     end
 
     context 'with invalid parameters' do
-      it 'returns unprocessable_entity http status' do
+      it 'returns unprocessable_content http status' do
         post comments_url, params: { comment: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

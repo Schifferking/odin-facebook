@@ -26,9 +26,9 @@ RSpec.describe Post, type: :request do
         expect(response).to render_template(:new)
       end
 
-      it 'returns unprocessable_entity http status' do
+      it 'returns unprocessable_content http status' do
         post posts_url, params: { post: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
